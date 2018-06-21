@@ -1,15 +1,23 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite errors="0" failures="1" tests="6" name="cppunit">
-    <testcase classname="MathTest" name="testSum" time="0">
-        <failure message="equality assertion failed - Expected: 141496748 - Actual : 16777217"
-                 type="Assertion"/>
-        <system-err>&#xD;[File] - mathTest.cpp&#xD;[Line] - 56&#xD;</system-err>
-    </testcase>
-    <testcase classname="MathTest" name="testConstructor" time="0"/>
-    <testcase classname="MathTest" name="testPush" time="0"/>
-    <testcase classname="ExpressionTest" name="testConstructor" time="0"/>
-    <testcase classname="ExpressionTest" name="testPush" time="0"/>
-    <testcase classname="ExpressionTest" name="testSkipped" time="0">
-        <skipped/>
-    </testcase>
-</testsuite>
+<testsuites xmlns:xs="http://www.w3.org/2001/XMLSchema" xmlns:xunit="http://www.xunit.org">
+    <testsuite name="001 Login Logout" time="4.482" tests="0" failures="0" errors="0" skipped="0" />
+    <testsuite name="001 Login Logout.when the user is logged out" time="4.482" tests="1" failures="0" errors="0" skipped="0">
+        <testcase name="it should login an existing user and redirect to the dashboard page" time="2.937" classname="001 Login Logout.when the user is logged out" />
+    </testsuite>
+    <testsuite name="001 Login Logout.when the user is logged out.and then signs in " time="0.517" tests="1" failures="0" errors="0" skipped="0">
+        <testcase name="it should logout the user" time="0.514" classname="001 Login Logout.when the user is logged out.and then signs in " />
+    </testsuite>
+    <testsuite name="100 Globale suche" time="0.001" tests="2" failures="0" errors="0" skipped="2">
+        <testcase name="should find a search result and navigate to the entity" time="0.000" classname="100 Globale suche">
+            <skipped />
+        </testcase>
+        <testcase name="should show existing Kita Fisch in &#34;Globale Suche&#34;" classname="100 Globale suche">
+            <skipped />
+        </testcase>
+    </testsuite>
+    <testsuite name="NSArrayTDSUtilTest" time="0.000" tests="3" failures="0" errors="0" skipped="0">
+        <testcase name="testArrayByMappingEachItemWithBlock" time="0.028" classname="NSArrayTDSUtilTest" />
+        <testcase name="testDictionaryByMappingEachItemWithKeyBlockValueBlock" time="0.004" classname="NSArrayTDSUtilTest" />
+        <testcase name="testSubarraysWithSize" time="0.004" classname="NSArrayTDSUtilTest" />
+    </testsuite>
+</testsuites>

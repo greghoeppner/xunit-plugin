@@ -55,19 +55,46 @@ THE SOFTWARE.
     </xsl:function>
 
     <xsl:template match="/testsuites">
-        <xsl:element name="testsuites">
-            <xsl:apply-templates select="testsuite" />
-        </xsl:element>
+        <testsuites>
+            <xsl:apply-templates />
+        </testsuites>
     </xsl:template>
 
     <xsl:key name="suiteName" match="testsuite" use="xunit:if-empty(@name, @package)" />
 
-    <xsl:template match="/testsuite">
+    <xsl:template match="//testsuite">
+        <xsl:element name="testsuite">
             <xsl:attribute name="name" select="xunit:if-empty(@name, 0)" />
             <xsl:attribute name="time" select="xunit:junit-time(xunit:if-empty(@time, 0))" />
-            <xsl:attribute name="tests" select="xunit:if-empty(@tests, 0)" />
-            <xsl:attribute name="failures" select="xunit:if-empty(@failures, 0)" />
-            <xsl:attribute name="errors" select="xunit:if-empty(@errors, 0)" />
-            <xsl:attribute name="skipped" select="xunit:if-empty(@skip, 0) + xunit:if-empty(@skips, 0) + xunit:if-empty(@skipped, 0) + xunit:if-empty(@disabled, 0)" />
+            <xsl:attribute name="tests" select="count(current()//testcase)" />
+            <xsl:attribute name="failures" select="count(current()//testcase/failure)" />
+            <xsl:attribute name="errors" select="count(current()//testcase/error)" />
+            <xsl:attribute name="skipped" select="count(current()//testcase/skipped)" />
+
+            <xsl:apply-templates />
+        </xsl:element>
+    </xsl:template>
+
+    <xsl:template match="//testcase">
+        <xsl:element name="testcase">
+            <xsl:attribute name="name" select="xunit:if-empty(@name, 'no name')" />
+            <xsl:if test="@time">
+                <xsl:attribute name="time" select="xunit:junit-time(xunit:if-empty(@time, 0))" />
+            </xsl:if>
+            <xsl:if test="@classname">
+                <xsl:attribute name="classname" select="@classname" />
+            </xsl:if>
+            <xsl:if test="@group">
+                <xsl:attribute name="group" select="@group" />
+            </xsl:if>
+
+            <xsl:if test="skipped">
+                <xsl:element name="skipped">
+                    <xsl:if test="@message">
+                        <xsl:attribute name="message" select="@message" />
+                    </xsl:if>
+                </xsl:element>
+            </xsl:if>
+        </xsl:element>
     </xsl:template>
 </xsl:stylesheet>
